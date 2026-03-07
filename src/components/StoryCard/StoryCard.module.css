@@ -1,0 +1,126 @@
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-light);
+  transition: all var(--transition-fast);
+}
+
+.card:hover {
+  background: var(--color-surface-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.rank {
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  min-width: 28px;
+  text-align: right;
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.title:hover {
+  color: var(--color-primary);
+}
+
+.domain {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  margin-left: var(--space-xs);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.meta a {
+  color: var(--color-text-secondary);
+}
+
+.meta a:hover {
+  color: var(--color-primary);
+}
+
+.comments {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
+.comments:hover {
+  color: var(--color-primary);
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-sm);
+  line-height: 1.4;
+}
+
+.askBadge {
+  composes: badge;
+  background: var(--color-primary-subtle);
+  color: var(--color-primary);
+}
+
+.showBadge {
+  composes: badge;
+  background: #EEF2FF;
+  color: var(--color-secondary);
+}
+
+.bookmarkBtn {
+  flex-shrink: 0;
+  padding: var(--space-xs);
+  color: var(--color-text-tertiary);
+  transition: all var(--transition-fast);
+  border-radius: var(--radius-sm);
+}
+
+.bookmarkBtn:hover {
+  color: var(--color-secondary);
+  background: var(--color-surface-hover);
+}
+
+.bookmarked {
+  composes: bookmarkBtn;
+  color: var(--color-secondary);
+}
+
+.dot {
+  color: var(--color-text-tertiary);
+}
+
+@media (max-width: 640px) {
+  .rank { display: none; }
+  .card { padding: var(--space-sm); }
+}

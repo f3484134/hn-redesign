@@ -1,0 +1,25 @@
+const users = [
+  { username: 'pg', karma: 156823, createdAt: '2007-02-19T00:00:00Z', about: 'Co-founder of Y Combinator. Essayist. Lisp hacker.' },
+  { username: 'dang', karma: 45210, createdAt: '2013-06-03T00:00:00Z', about: 'HN moderator.' },
+  { username: 'tptacek', karma: 203456, createdAt: '2007-03-15T00:00:00Z', about: 'Security consultant. Co-founder of Matasano, Latacora, and Fly.io.' },
+  { username: 'patio11', karma: 98234, createdAt: '2009-04-21T00:00:00Z', about: 'Bits about Money. Previously Stripe, Starfighter, Kalzumeus.' },
+  { username: 'jacquesm', karma: 167890, createdAt: '2008-01-10T00:00:00Z', about: 'Serial entrepreneur. Writer. Photographer.' },
+  { username: 'luu', karma: 78432, createdAt: '2012-09-14T00:00:00Z', about: 'I read a lot of papers.' },
+  { username: 'ColinWright', karma: 54321, createdAt: '2010-07-23T00:00:00Z', about: 'Mathematician. Juggler. Occasional coder.' },
+  { username: 'raganwald', karma: 32109, createdAt: '2008-05-18T00:00:00Z', about: 'Author of JavaScript Allongé. Blogger.' },
+  { username: 'minimaxir', karma: 45678, createdAt: '2013-02-27T00:00:00Z', about: 'Data scientist. AI/ML researcher. Creator of various open-source tools.' },
+  { username: 'sctb', karma: 23456, createdAt: '2015-11-05T00:00:00Z', about: 'HN moderator. Previously physics.' },
+  { username: 'throwaway_dev', karma: 1234, createdAt: '2023-08-14T00:00:00Z', about: null },
+  { username: 'rust_evangelist', karma: 8901, createdAt: '2019-03-22T00:00:00Z', about: 'Everything is better in Rust. 🦀' },
+  { username: 'webdev_sarah', karma: 5678, createdAt: '2020-01-15T00:00:00Z', about: 'Frontend developer. React enthusiast. Coffee addict.' },
+  { username: 'ml_researcher', karma: 12345, createdAt: '2018-06-30T00:00:00Z', about: 'PhD student working on NLP. Papers or bust.' },
+  { username: 'old_timer', karma: 87654, createdAt: '2007-06-01T00:00:00Z', about: 'Been here since the beginning. Seen it all.' },
+  { username: 'startup_founder', karma: 6789, createdAt: '2021-04-10T00:00:00Z', about: 'Building something. Pre-revenue. Will update bio when funded.' },
+  { username: 'sysadmin_jane', karma: 34567, createdAt: '2014-09-18T00:00:00Z', about: 'Infrastructure engineer. Linux, Kubernetes, and caffeine.' },
+  { username: 'crypto_skeptic', karma: 15432, createdAt: '2017-11-28T00:00:00Z', about: 'Not all blockchains are created equal. Most shouldn\'t be created at all.' },
+  { username: 'design_matters', karma: 9876, createdAt: '2019-07-05T00:00:00Z', about: 'UX designer who codes. Design systems advocate.' },
+  { username: 'academic_cs', karma: 21098, createdAt: '2016-02-14T00:00:00Z', about: 'CS professor. Distributed systems. Occasionally useful.' },
+  { username: 'kernelhacker', karma: 43210, createdAt: '2009-12-01T00:00:00Z', about: 'Linux kernel contributor. C is my love language.' },
+];
+
+export default users;

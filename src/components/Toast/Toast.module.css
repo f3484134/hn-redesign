@@ -1,0 +1,42 @@
+.toast {
+  position: fixed;
+  top: 72px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  animation: slideIn 0.3s ease;
+  max-width: 400px;
+}
+
+.success {
+  background: var(--color-success);
+  color: white;
+}
+
+.error {
+  background: var(--color-error);
+  color: white;
+}
+
+.closeBtn {
+  color: white;
+  opacity: 0.8;
+  margin-left: var(--space-xs);
+}
+
+.closeBtn:hover {
+  opacity: 1;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-50%) translateY(-20px); opacity: 0; }
+  to { transform: translateX(-50%) translateY(0); opacity: 1; }
+}

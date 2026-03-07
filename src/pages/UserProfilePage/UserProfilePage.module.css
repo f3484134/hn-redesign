@@ -1,0 +1,109 @@
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
+}
+
+.profileCard {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-light);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.username {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.userIcon {
+  font-size: var(--font-size-2xl);
+}
+
+.stats {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.about {
+  margin-top: var(--space-md);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-normal);
+}
+
+.tabs {
+  display: flex;
+  gap: var(--space-2xs);
+  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tab {
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition-fast);
+  background: none;
+  cursor: pointer;
+}
+
+.tab:hover {
+  color: var(--color-text-primary);
+}
+
+.tabActive {
+  composes: tab;
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.storyList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.commentItem {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-light);
+  padding: var(--space-md);
+  transition: background var(--transition-fast);
+}
+
+.commentItem:hover {
+  background: var(--color-surface-hover);
+}
+
+.commentText {
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-normal);
+  margin-bottom: var(--space-xs);
+}
+
+.commentMeta {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.commentMeta a {
+  color: var(--color-primary);
+}
+
+.notFound {
+  text-align: center;
+  padding: var(--space-2xl);
+  color: var(--color-text-secondary);
+}

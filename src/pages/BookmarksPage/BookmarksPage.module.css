@@ -1,0 +1,22 @@
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
+}
+
+.heading {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-lg);
+}
+
+.count {
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-secondary);
+}
+
+.storyList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
