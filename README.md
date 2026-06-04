@@ -40,6 +40,10 @@ Output goes to `dist/`.
 | `/search?q=...` | Search |
 | `/bookmarks` | Bookmarks |
 
+## Presentation
+
+Open [`presentation.html`](presentation.html) in a browser for a standalone reveal.js project deck (繁體中文).
+
 ## Tech Stack
 
 - React 18
