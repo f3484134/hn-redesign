@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HN Redesign — 專案簡報</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/moon.css" id="theme" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css" />
+
+  <style>
+    :root {
+      --hn:      #FF6600;
+      --hn-soft: #FFF4EB;
+      --indigo:  #6366F1;
+      --cyan:    #06B6D4;
+      --green:   #16A34A;
+      --red:     #DC2626;
+    }
+
+    .reveal { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif; }
+    .reveal h1, .reveal h2, .reveal h3 { text-transform: none; letter-spacing: -0.02em; }
+    .reveal h1 { font-size: 2.2em; }
+    .reveal h2 { font-size: 1.5em; }
+    .reveal h3 { font-size: 1.1em; color: var(--hn); }
+
+    .hn     { color: var(--hn); }
+    .indigo { color: var(--indigo); }
+    .cyan   { color: var(--cyan); }
+    .green  { color: var(--green); }
+
+    .reveal pre { font-size: 0.42em; box-shadow: none; width: 100%; }
+    .reveal pre code { padding: 1em; border-radius: 8px; max-height: 520px; white-space: pre-wrap; word-wrap: break-word; }
+    .reveal code { font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+
+    .reveal table { font-size: 0.55em; margin: 0 auto; border-collapse: collapse; }
+    .reveal table th { background: rgba(255,102,0,0.15); color: var(--hn); font-weight: 700; }
+    .reveal table td, .reveal table th { border: 1px solid rgba(255,255,255,0.12); padding: 0.4em 0.65em; }
+    .reveal table td { color: #ccc; }
+
+    .flow { display: flex; align-items: center; justify-content: center; gap: 0.4em; flex-wrap: wrap; margin: 0.8em 0; }
+    .flow-box {
+      background: rgba(255,102,0,0.1); border: 1px solid var(--hn);
+      border-radius: 8px; padding: 0.5em 0.9em; font-size: 0.65em; font-weight: 600; color: var(--hn);
+    }
+    .flow-arrow { font-size: 1.2em; color: #666; }
+
+    .cols { display: flex; gap: 1.5em; align-items: flex-start; }
+    .cols > * { flex: 1; }
+
+    .page-card {
+      background: rgba(255,255,255,0.05); border-radius: 8px;
+      padding: 0.6em 0.9em; border-left: 3px solid var(--hn);
+      text-align: left; font-size: 0.6em; margin-bottom: 0.4em;
+    }
+    .page-card h4 { margin: 0 0 0.2em 0; color: var(--hn); font-size: 1.1em; }
+    .page-card p { margin: 0; color: #aaa; }
+
+    .page-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.5em;
+      max-width: 750px; margin: 0 auto;
+    }
+
+    .stat-grid {
+      display: flex; gap: 1em; justify-content: center; flex-wrap: wrap; margin: 0.8em 0;
+    }
+    .stat-box {
+      background: rgba(255,255,255,0.05); border-radius: 8px; padding: 0.6em 1.2em;
+      text-align: center; min-width: 120px;
+    }
+    .stat-box .num { font-size: 1.8em; font-weight: 700; color: var(--hn); }
+    .stat-box .label { font-size: 0.55em; color: #888; margin-top: 0.2em; }
+
+    .team-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6em;
+      max-width: 700px; margin: 0.5em auto; font-size: 0.58em;
+    }
+    .team-card {
+      background: rgba(255,255,255,0.05); border-radius: 8px; padding: 0.7em;
+      text-align: center;
+    }
+    .team-card .emoji { font-size: 1.8em; }
+    .team-card .name { font-weight: 700; color: var(--hn); margin: 0.2em 0 0.1em; }
+    .team-card .role { color: #888; font-size: 0.9em; }
+
+    .reveal .slide-number { font-size: 0.5em; color: #666; }
+    .sub { font-size: 0.6em; color: #888; margin-top: 0.3em; }
+  </style>
+</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ═══════ 標題 ═══════ -->
+<section>
+  <h1 style="font-size:1.8em;">🔶 HN Redesign</h1>
+  <p style="font-size:0.9em; color:var(--hn); margin:0.2em 0;">現代化的 Hacker News 閱讀體驗</p>
+  <p style="font-size:0.55em; color:#999; margin-top:0.5em;">專案簡報 · Agent Product Team</p>
+  <p style="font-size:0.4em; color:#666; margin-top:2em;">2026 年 3 月 · PM Steve 主持</p>
+</section>
+
+<!-- ═══════ 第一部分：問題與受眾 ═══════ -->
+
+<section>
+  <h2>問題是什麼？</h2>
+  <p style="font-size:0.7em; color:#ccc;">
+    Hacker News 自 <span class="hn">2007 年</span>以來幾乎沒有改變。
+  </p>
+  <div style="font-size:0.62em; text-align:left; max-width:650px; margin:0.8em auto; color:#ccc;">
+    <p>📐 表格佈局，毫無視覺層次</p>
+    <p>👆 點擊目標太小，行動裝置操作困難</p>
+    <p>📱 沒有響應式設計 — 所有螢幕都是同一版面</p>
+    <p>🧠 老用戶早已習慣，新用戶直接離開</p>
+  </div>
+  <p style="font-size:0.55em; color:#888; margin-top:1em;">
+    我們打造一個<span class="hn">現代化的唯讀前端</span>，<br>
+    重新想像 HN 的閱讀體驗，同時保留其核心心智模型。
+  </p>
+</section>
+
+<section>
+  <h2>目標使用者</h2>
+  <table>
+    <thead>
+      <tr><th>使用者類型</th><th>描述</th><th>核心需求</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="hn">每日 HN 讀者</span></td>
+        <td>每天查看 3-10 次</td>
+        <td>快速掃描、清楚的層級架構</td>
+      </tr>
+      <tr>
+        <td><span class="hn">隨意瀏覽者</span></td>
+        <td>透過分享連結進來</td>
+        <td>直覺導航、零學習成本</td>
+      </tr>
+      <tr>
+        <td><span class="hn">行動裝置使用者</span></td>
+        <td>通勤時用手機瀏覽</td>
+        <td>觸控友善、響應式、快速</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>驗證目標</h2>
+  <div style="font-size:0.65em; text-align:left; max-width:650px; margin:0.5em auto; color:#ccc;">
+    <p>✅ HN 的資訊架構可以在不損失易用性的前提下被重新設計</p>
+    <p>✅ 6 頁的 React SPA 涵蓋真實的架構與設計複雜度</p>
+    <p>✅ 具有關聯結構的 Mock 資料（文章 ↔ 使用者 ↔ 留言）能實現逼真的跨頁導航</p>
+    <p>✅ 自治 Agent 團隊能端到端交付完整產品</p>
+  </div>
+  <p class="sub">V1 範圍：多頁 Web App、客戶端路由、僅使用 Mock 資料 — 無後端</p>
+</section>
+
+<!-- ═══════ 第二部分：產品導覽 ═══════ -->
+
+<section>
+  <h2>六個頁面，一個應用</h2>
+  <div class="page-grid">
+    <div class="page-card">
+      <h4>🏠 首頁 / 文章列表</h4>
+      <p>Top、New、Best、Ask HN、Show HN — 標籤切換，URL 驅動狀態</p>
+    </div>
+    <div class="page-card">
+      <h4>💬 文章詳情</h4>
+      <p>完整文章標題 + 巢狀留言樹（4 層以上，依深度標色）</p>
+    </div>
+    <div class="page-card">
+      <h4>👤 使用者檔案</h4>
+      <p>帳號、Karma、簡介 + 分頁顯示投稿與留言</p>
+    </div>
+    <div class="page-card">
+      <h4>✏️ 投稿頁面</h4>
+      <p>連結 / Ask 切換、客戶端驗證、即時 StoryCard 預覽</p>
+    </div>
+    <div class="page-card">
+      <h4>🔍 搜尋</h4>
+      <p>URL 驅動查詢參數、依類型/日期/分數篩選、文章 + 留言結果</p>
+    </div>
+    <div class="page-card">
+      <h4>🔖 書籤</h4>
+      <p>透過 localStorage 收藏文章，專屬頁面含空狀態與移除功能</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>為何選這六個頁面？</h2>
+  <div style="font-size:0.6em; text-align:left; max-width:700px; margin:0.5em auto; color:#ccc;">
+    <p><span class="hn">文章 + 留言</span> — 核心 HN 流程。完整路由、URL 狀態、麵包屑。</p>
+    <p><span class="hn">使用者檔案</span> — 第二種實體，跨連結導航，不同版面模式。</p>
+    <p><span class="hn">投稿</span> — Feed App 中的表單頁面。驗證邏輯、不同互動模式。</p>
+    <p><span class="hn">搜尋</span> — URL 查詢參數、篩選控制項，與所有頁面相連。</p>
+    <p><span class="hn">書籤</span> — 唯一具有持久客戶端狀態的功能（localStorage），橫跨多頁。</p>
+  </div>
+  <p class="sub">每一頁都增添獨特的架構複雜度 — 不是湊數。</p>
+</section>
+
+<section>
+  <h2>關鍵使用者流程</h2>
+  <div style="font-size:0.58em; text-align:left; max-width:700px; margin:0.5em auto; color:#ccc;">
+    <p><strong class="hn">1. 瀏覽 → 閱讀 → 探索</strong><br>
+    首頁 → 文章 → 留言作者 → 使用者檔案 → 他的投稿 → 文章詳情</p>
+
+    <p><strong class="hn">2. 搜尋 → 發現 → 收藏</strong><br>
+    搜尋欄 → 結果 → 依分數篩選 → 點擊文章 → 加入書籤</p>
+
+    <p><strong class="hn">3. 投稿 → 預覽 → 瀏覽</strong><br>
+    投稿頁 → 填寫表單 → 即時預覽 → 「送出」→ Toast 通知 → 首頁</p>
+
+    <p><strong class="hn">4. 策展 → 回顧</strong><br>
+    瀏覽 → 收藏多篇 → /bookmarks → 點擊已存文章 → 閱讀</p>
+
+    <p><strong class="hn">5. 依類型篩選</strong><br>
+    首頁 → 「Ask HN」標籤 → 討論串 → 「Show HN」標籤 → 不同文章</p>
+  </div>
+</section>
+
+<section>
+  <h2>全域功能</h2>
+  <div style="font-size:0.62em; text-align:left; max-width:650px; margin:0.5em auto; color:#ccc;">
+    <p>🧭 <strong>固定頂部導航</strong> — Logo、文章標籤、搜尋、書籤徽章、投稿連結</p>
+    <p>📱 <strong>響應式版面</strong> — 375px（iPhone SE）到 1440px 桌面版</p>
+    <p>🔙 <strong>瀏覽器歷史</strong> — 前進/後退在所有路由皆正常運作</p>
+    <p>⚡ <strong>頁面轉場</strong> — CSS 淡入淡出（200ms）</p>
+    <p>👆 <strong>觸控目標</strong> — 所有互動元素最小 44×44px</p>
+    <p>🚫 <strong>404 頁面</strong> — 樣式化的錯誤頁，含回首頁導航</p>
+  </div>
+</section>
+
+<!-- ═══════ 第三部分：設計理念 ═══════ -->
+
+<section>
+  <h2>設計原則</h2>
+  <div style="font-size:0.62em; text-align:left; max-width:700px; margin:0.5em auto; color:#ccc;">
+    <p><span class="hn">1. 可掃描勝過裝飾性</span> — 資訊密度是特色。視覺層級加速瀏覽，而非減速。</p>
+    <p><span class="hn">2. 溫暖中性色調</span> — 奶油色、柔和橙色，向 HN 經典致敬。現代對比度，不冷/不商業。</p>
+    <p><span class="hn">3. 大觸控區、緊密網格</span> — 44px+ 點擊目標、寬裕間距，桌面版仍保持資訊密度。</p>
+    <p><span class="hn">4. 漸進式揭露</span> — 重要資訊優先。留言可摺疊，metadata 為次要。</p>
+    <p><span class="hn">5. 系統原生感</span> — 系統字型堆疊，像是一個精心打造的工具 — 不是行銷網站。</p>
+  </div>
+</section>
+
+<section>
+  <h2>設計系統</h2>
+  <div class="cols" style="font-size:0.55em;">
+    <div>
+      <h3 style="margin-top:0;">🎨 色彩 Token</h3>
+      <div style="text-align:left; color:#ccc;">
+        <p><span style="display:inline-block;width:14px;height:14px;background:#FF6600;border-radius:3px;vertical-align:middle;margin-right:6px;"></span> <code>--color-primary</code> #FF6600</p>
+        <p><span style="display:inline-block;width:14px;height:14px;background:#6366F1;border-radius:3px;vertical-align:middle;margin-right:6px;"></span> <code>--color-secondary</code> #6366F1</p>
+        <p><span style="display:inline-block;width:14px;height:14px;background:#FAFAF8;border-radius:3px;vertical-align:middle;margin-right:6px;border:1px solid #666;"></span> <code>--color-background</code> #FAFAF8</p>
+        <p><span style="display:inline-block;width:14px;height:14px;background:#1A1A1A;border-radius:3px;vertical-align:middle;margin-right:6px;"></span> <code>--color-text-primary</code> #1A1A1A</p>
+      </div>
+      <h3>🔤 字型排版</h3>
+      <div style="text-align:left; color:#ccc;">
+        <p>Inter + 系統字型堆疊</p>
+        <p>15px 基準 · 18px 標題 · 24px 大標</p>
+      </div>
+    </div>
+    <div>
+      <h3 style="margin-top:0;">📐 間距與圓角</h3>
+      <div style="text-align:left; color:#ccc;">
+        <p>4px → 48px 間距比例（8 個 Token）</p>
+        <p>6px 按鈕 · 10px 卡片 · 16px 彈窗</p>
+      </div>
+      <h3>🌈 留言深度色彩</h3>
+      <div style="text-align:left; color:#ccc;">
+        <p><span style="display:inline-block;width:14px;height:14px;background:#FF6600;border-radius:3px;vertical-align:middle;margin-right:6px;"></span> L0 — 橘色</p>
+        <p><span style="display:inline-block;width:14px;height:14px;background:#6366F1;border-radius:3px;vertical-align:middle;margin-right:6px;"></span> L1 — 靛藍</p>
+        <p><span style="display:inline-block;width:14px;height:14px;background:#06B6D4;border-radius:3px;vertical-align:middle;margin-right:6px;"></span> L2 — 青色</p>
+        <p><span style="display:inline-block;width:14px;height:14px;background:#8B5CF6;border-radius:3px;vertical-align:middle;margin-right:6px;"></span> L3 — 紫色</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>元件庫</h2>
+  <table style="font-size:0.5em;">
+    <thead>
+      <tr><th>元件</th><th>用途</th><th>變體</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Header</td><td>全域導航 — Logo、標籤、搜尋、書籤、投稿</td><td>桌面版 / 精簡版</td></tr>
+      <tr><td>StoryCard</td><td>列表中的文章卡片 — 標題、網域、metadata</td><td>預設 / ask / show</td></tr>
+      <tr><td>CommentTree</td><td>遞迴巢狀留言，依深度標色</td><td>—</td></tr>
+      <tr><td>Comment</td><td>單則留言，含作者、時間、摺疊功能</td><td>預設 / 原作者</td></tr>
+      <tr><td>StoryForm</td><td>投稿表單，含驗證 + 即時預覽</td><td>連結 / ask</td></tr>
+      <tr><td>FilterBar</td><td>搜尋篩選 — 類型、排序、日期</td><td>—</td></tr>
+      <tr><td>Toast</td><td>臨時通知</td><td>成功 / 錯誤 / 資訊</td></tr>
+      <tr><td>EmptyState</td><td>無內容佔位</td><td>書籤 / 搜尋</td></tr>
+    </tbody>
+  </table>
+  <p class="sub">所有元件皆定義了響應式行為、狀態與驗收標準</p>
+</section>
+
+<!-- ═══════ 第四部分：實作與後續 ═══════ -->
+
+<section>
+  <h2>技術堆疊</h2>
+  <table>
+    <thead>
+      <tr><th>層級</th><th>選擇</th><th>原因</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>框架</td><td>React 18</td><td>指定使用、穩定、廣為人知</td></tr>
+      <tr><td>路由</td><td>React Router v6</td><td>巢狀路由、URL 參數、查詢字串</td></tr>
+      <tr><td>樣式</td><td>CSS Modules</td><td>零執行時期開銷、有作用域、乾淨 JSX</td></tr>
+      <tr><td>建置</td><td>Vite 5</td><td>快速 HMR、零設定、現代 ESM</td></tr>
+      <tr><td>狀態</td><td>Context + useReducer</td><td>書籤功能足夠 — 不需要 Redux</td></tr>
+      <tr><td>資料</td><td>靜態 JS 模組</td><td>關聯式 Mock 資料，未來可輕鬆替換 API</td></tr>
+      <tr><td>圖示</td><td>Lucide React</td><td>輕量、支援 Tree-shaking</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>為何使用 CSS Modules？</h2>
+  <div style="font-size:0.62em; text-align:left; max-width:650px; margin:0.5em auto; color:#ccc;">
+    <p>🚀 <strong>零執行時期成本</strong> — 樣式在建置時解析，無 JS 額外開銷</p>
+    <p>🔒 <strong>預設有作用域</strong> — 無命名衝突、不需 BEM</p>
+    <p>🎨 <strong>設計 Token 作為 CSS 自訂屬性</strong> — 設計師定義 Token，元件自然取用</p>
+    <p>📦 <strong>檔案並置</strong> — <code>Header.jsx</code> + <code>Header.module.css</code> 放在一起</p>
+    <p>🧹 <strong>乾淨的 JSX</strong> — 不像 Tailwind 有大量 Utility Class</p>
+  </div>
+  <p class="sub">曾考慮的替代方案：Tailwind（設定負擔）、styled-components（執行時期成本）、原生 CSS（命名衝突）</p>
+</section>
+
+<section>
+  <h2>QA 結果</h2>
+  <div class="stat-grid">
+    <div class="stat-box">
+      <div class="num" style="color:var(--green);">通過</div>
+      <div class="label">整體判定</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">7/7</div>
+      <div class="label">已測試頁面</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">45/48</div>
+      <div class="label">規格項目</div>
+    </div>
+    <div class="stat-box">
+      <div class="num" style="color:var(--green);">0</div>
+      <div class="label">嚴重 / 主要問題</div>
+    </div>
+  </div>
+  <div style="font-size:0.55em; text-align:left; max-width:650px; margin:0.5em auto; color:#ccc;">
+    <p>✅ 全部 5 個使用者流程已端對端測試</p>
+    <p>✅ 響應式版面在行動裝置與桌面版已驗證</p>
+    <p>✅ 設計系統 Token 在全站正確套用</p>
+    <p>✅ 乾淨建置 — 291KB JS、20KB CSS</p>
+    <p>⚠️ 4 個次要問題：檔案組織偏差（功能正常）</p>
+  </div>
+</section>
+
+<section>
+  <h2>下一步</h2>
+  <div class="cols" style="font-size:0.6em;">
+    <div style="border:1px solid var(--hn); border-radius:8px; padding:1em;">
+      <h3 style="margin-top:0;">🔜 V2 構想</h3>
+      <ul style="color:#ccc;">
+        <li>接入真實 HN API</li>
+        <li>深色模式切換</li>
+        <li>分頁 / 無限捲動</li>
+        <li>效能優化：延遲載入、SSR</li>
+        <li>鍵盤快捷鍵</li>
+      </ul>
+    </div>
+    <div style="border:1px solid var(--indigo); border-radius:8px; padding:1em;">
+      <h3 style="margin-top:0; color:var(--indigo);">🔧 整理事項</h3>
+      <ul style="color:#ccc;">
+        <li>依 ARCHITECTURE.md 重整檔案</li>
+        <li>分離 hooks 與 variables 檔案</li>
+        <li>自訂 favicon</li>
+        <li>增量式 git commits</li>
+        <li>衝刺中期檢討</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 團隊 ═══════ -->
+<section>
+  <h2>團隊 🤝</h2>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="emoji">📋</div>
+      <div class="name">Steve</div>
+      <div class="role">PM — 需求與範疇</div>
+    </div>
+    <div class="team-card">
+      <div class="emoji">🔬</div>
+      <div class="name">Stephen</div>
+      <div class="role">研究員</div>
+    </div>
+    <div class="team-card">
+      <div class="emoji">🏗️</div>
+      <div class="name">Tony</div>
+      <div class="role">架構師</div>
+    </div>
+    <div class="team-card">
+      <div class="emoji">🎨</div>
+      <div class="name">Natasha</div>
+      <div class="role">設計師 — 設計系統</div>
+    </div>
+    <div class="team-card">
+      <div class="emoji">👁️</div>
+      <div class="name">Vision</div>
+      <div class="role">工程師 — 實作</div>
+    </div>
+    <div class="team-card">
+      <div class="emoji">⚡</div>
+      <div class="name">Thor</div>
+      <div class="role">QA — 測試</div>
+    </div>
+  </div>
+  <p class="sub">全自治 Agent 流程 · 單一衝刺 · 零人類程式碼</p>
+</section>
+
+<!-- ═══════ 結尾 ═══════ -->
+<section>
+  <h1 style="font-size:1.6em;">🔶 出貨吧。</h1>
+  <p style="font-size:0.7em; color:var(--hn); margin:0.3em 0;">HN Redesign — v1 完成</p>
+  <div style="font-size:0.55em; color:#888; margin-top:1.5em;">
+    <p>7 頁 · 45/48 規格項目 · 0 嚴重問題 · 🟢 通過</p>
+    <p style="margin-top:1em;">Agent Product Team · 2026 年 3 月</p>
+  </div>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    showSlideNumber: 'all',
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    center: true,
+    width: 1100,
+    height: 700,
+    margin: 0.08,
+    plugins: [RevealHighlight, RevealNotes]
+  });
+</script>
+</body>
+</html>
