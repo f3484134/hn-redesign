@@ -13,7 +13,7 @@ import './styles/global.css';
 export default function App() {
   return (
     <BookmarkProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/hn-redesign">
         <Header />
         <main>
           <Routes>
